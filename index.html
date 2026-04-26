@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>امتحان شامل: تحليل وتصميم نظم المعلومات</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9fbfd;
+            color: #333;
+            line-height: 1.8;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 40px;
+            border-right: 4px solid #e74c3c;
+            padding-right: 10px;
+        }
+        .scenario-card {
+            background-color: #fdfefe;
+            border: 1px solid #dce1e3;
+            border-right: 5px solid #f39c12;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+        }
+        .scenario-card h3 {
+            margin-top: 0;
+            color: #d35400;
+        }
+        .question-block {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ecf0f1;
+        }
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 8px;
+            background: #f4f6f7;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #eaeded;
+            display: flex;
+            align-items: center;
+        }
+        .options input {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .citation {
+            font-size: 0.85em;
+            color: #95a5a6;
+            margin-right: 5px;
+        }
+        .q-number {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>امتحان شامل: تحليل وتصميم نظم المعلومات</h1>
+
+    <h2>القسم الأول: أسئلة السيناريو والمواقف (10 سيناريوهات)</h2>
+    <p>اقرأ كل سيناريو بعناية ثم أجب عن السؤال الذي يليه مفترضاً دورك كمحلل أو مدير للمشروع.</p>
+
+    <div class="scenario-card">
+        <h3>سيناريو 1: الذكاء الاصطناعي في مستشفى الأمل</h3>
+        <p>قررت إدارة المستشفى الاستعانة بالذكاء الاصطناعي لتطوير نظام حجز المواعيد وتخفيف الضغط على الموظفين وتحليل الشكاوى الواردة في رسائل البريد الإلكتروني. [cite: 364, 385]</p>
+        <p class="question-text">سؤال: بصفتك محلل نظم، كيف يمكن للذكاء الاصطناعي مساعدتك في مرحلة "تحليل متطلبات النظام" بشكل محدد في هذه الحالة؟</p>
+        <p><strong>الإجابة المقترحة:</strong> يمكن لنظام الذكاء الاصطناعي استخراج المتطلبات تلقائياً من الوثائق ورسائل البريد الإلكتروني للمرضى باستخدام تقنيات معالجة اللغة الطبيعية، وتحليلها لفهم احتياجات المستخدمين، واكتشاف التناقضات[cite: 364]. سينتج عن ذلك تحديد متطلبات وظيفية مثل: تسجيل المرضى، حجز موعد، وإلغاء موعد[cite: 391, 392, 393].</p>
+    </div>
+
+    <div class="scenario-card">
+        <h3>سيناريو 2: منصة التعليم الإلكتروني "إدراك"</h3>
+        <p>تواجه منصة تعليمية مشاكل في تعطل النظام خلال فترات الامتحانات بسبب الضغط المفاجئ، وترغب في استخدام تقنيات حديثة لتفادي ذلك. [cite: 405, 408]</p>
+        <p class="question-text">سؤال: بصفتك مدير المشروع التقني، ما هي الأداة التي ستستخدمها وكيف ستعالج المشكلة؟</p>
+        <p><strong>الإجابة المقترحة:</strong> سأستخدم التعلم الآلي والذكاء الاصطناعي للتنبؤ باحتياجات النظام المستقبلية والتنبؤ بزيادة الضغط خلال فترة الامتحانات من خلال تحليل عدد الطلبة وأوقات الدخول[cite: 404, 405, 406, 408]. التوصية ستكون بزيادة سعة الخادم واستخدام الحوسبة السحابية[cite: 409, 410, 411].</p>
+    </div>
+
+    <div class="scenario-card">
+        <h3>سيناريو 3: نظام الدفع الإلكتروني الجديد</h3>
+        <p>تعمل شركة تجارية على برمجة نظام دفع إلكتروني جديد، وتريد التأكد من خلوه من الثغرات قبل إطلاقه للجمهور. [cite: 397]</p>
+        <p class="question-text">سؤال: كيف يمكنك تطبيق الذكاء الاصطناعي في مرحلة "اختبار النظام" (System Testing)؟</p>
+        <p><strong>الإجابة المقترحة:</strong> بإنشاء حالات اختبار تلقائية مثل إدخال رقم بطاقة غير صحيح، أو محاكاة انقطاع الإنترنت أثناء الدفع، أو محاولة دفع مكرر لاكتشاف الأخطاء والثغرات الأمنية واقتراح طرق المعالجة[cite: 373, 374, 398, 399, 400, 401, 402].</p>
+    </div>
+
+    <div class="scenario-card">
+        <h3>سيناريو 4: نظام التسجيل الجامعي</h3>
+        <p>جامعة تريد الانتقال من التسجيل اليدوي إلى الإلكتروني. طلب منك العميد دراسة المشاكل الحالية ثم البدء فوراً في إنشاء قاعدة بيانات للطلبة. [cite: 56, 57, 59]</p>
+        <p class="question-text">سؤال: هل دمج العميد بين مرحلتين مختلفتين؟ وضح الفرق بين ما طلبه.</p>
+        <p><strong>الإجابة المقترحة:</strong> نعم، دراسة مشاكل التسجيل اليدوي وصلاحيات المستخدمين تندرج تحت مرحلة "تحليل نظم المعلومات" [cite: 47, 57, 58]، بينما إنشاء قاعدة بيانات للطلبة وتصميم شاشات التسجيل تندرج تحت مرحلة "تصميم نظم المعلومات"[cite: 51, 52, 59].</p>
+    </div>
+
+    <div class="scenario-card">
+        <h3>سيناريو 5: حوادث شركة الحافلات</h3>
+        <p>تعاني شركة نقل من تكرار حوادث الحافلات مما أدى إلى إصابة المسافرين وفقدان الثقة بالشركة. طلب منك مجلس الإدارة تحليل الوضع. [cite: 536, 539, 541]</p>
+        <p class="question-text">سؤال: باستخدام "شجرة المشاكل"، حدد المشكلة الرئيسية، الأسباب، والآثار.</p>
+        <p><strong>الإجابة المقترحة:</strong> المشكلة المركزية (الجذع) هي: حوادث الحافلات متكررة[cite: 530, 541]. الأسباب (الجذور) هي: تدهور حالة الطرق، حافلات قديمة جداً، عدم تبصر السائقين، وغياب الصيانة[cite: 532, 542, 544, 545]. الآثار (القمة) هي: إصابة المسافرين، والوصول المتأخر، وفقدان الثقة بالشركة[cite: 528, 536, 538, 539].</p>
+    </div>
+
+    <div class="scenario-card">
+        <h3>سيناريو 6: إطلاق خدمات بنكية جديدة</h3>
+        <p>ينوي بنك إطلاق خدمات مصرفية إلكترونية جديدة. لتجنب الفشل، أكد مدير الجودة على ضرورة تحديد الأشخاص والجهات ذات العلاقة. [cite: 559, 560]</p>
+        <p class="question-text">سؤال: من هم "أصحاب المصلحة" (Stakeholders) في هذا المشروع؟ اذكر 4 فئات على الأقل.</p>
+        <p><strong>الإجابة المقترحة:</strong> بناءً على تصنيف الجهات المعنية بالمشروع البنكي، يشمل أصحاب المصلحة: إدارة البنك، موظفي البنك، عملاء البنك، المساهمين، الجهات الحكومية، والمجتمع[cite: 567, 568, 569, 572, 573, 575].</p>
+    </div>
+
+    <div class="scenario-card">
+        <h3>سيناريو 7: الازدحام وتقليص المعاملات</h3>
+        <p>مؤسسة قلصت خطوات إنجاز المعاملة من 33 يوماً إلى 5 أيام عن طريق إنشاء "نافذة خدمة واحدة" (One Stop Shopping) للمراجعين. [cite: 156, 160, 163]</p>
+        <p class="question-text">سؤال: بصفتك مدير عمليات، كيف تبرر نجاح هذا الإجراء من منظور "تحليل العمليات"؟</p>
+        <p><strong>الإجابة المقترحة:</strong> تم النجاح من خلال تحليل "الأنشطة والمهام" (أصغر وحدة عمل) [cite: 111, 120]، وتقليص خطوات السكرتاريا والخطوات الفنية ودمجها للوصول إلى مؤسسة رقمية تقدم الخدمة بواقع وقفة واحدة (Integrated E-Government Systems)[cite: 159, 160, 162, 164].</p>
+    </div>
+
+    <div class="scenario-card">
+        <h3>سيناريو 8: أبعاد التميز في تقديم الخدمة</h3>
+        <p>أطلقت دائرة حكومية نظاماً إلكترونياً متطوراً جداً، لكن الموظفين لم يتدربوا عليه وتم إطلاقه في وقت إجازات الأعياد مما أدى لتوقفه. [cite: 88, 93, 94]</p>
+        <p class="question-text">سؤال: أي من أركان "التميز" (Excellence) تم الإخلال بها في هذا المشروع؟</p>
+        <p><strong>الإجابة المقترحة:</strong> تم الإخلال بمبدأ "في الوقت الصحيح" (بسبب إطلاقه في الأعياد)، ومبدأ "مع الناس الأصحاح - كادر كفؤ ومحفز" (بسبب عدم تدريب الموظفين)[cite: 88, 94, 96].</p>
+    </div>
+
+    <div class="scenario-card">
+        <h3>سيناريو 9: تعثر بناء المصنع الذكي</h3>
+        <p>مشروع بناء مصنع واجه تأخيراً في التسليم وزيادة غير متوقعة في الميزانية بسبب إضافة المالك لمتطلبات تقنية جديدة أثناء التنفيذ. [cite: 468, 472, 476]</p>
+        <p class="question-text">سؤال: ما هي "المحددات الثلاثية" للمشروع التي تأثرت في هذه الحالة؟</p>
+        <p><strong>الإجابة المقترحة:</strong> تأثرت المحددات الثلاثية للمشروع وهي: "الوقت" (تأخر المشروع)، "التكاليف" (تجاوز التكلفة)، و"نطاق العمل" (بسبب تجاوز/نقص النطاق بإضافة متطلبات جديدة)[cite: 450, 452, 453, 454, 468, 472, 476].</p>
+    </div>
+
+    <div class="scenario-card">
+        <h3>سيناريو 10: دراسة السوق والبيئة الخارجية</h3>
+        <p>شركة تطوير برمجيات تريد الدخول في سوق دولة جديدة، وطلب منك تحليل العوامل الخارجية التي قد تؤثر على نجاح أنظمتهم هناك. [cite: 464, 467]</p>
+        <p class="question-text">سؤال: باستخدام أداة PESTLE، اذكر ثلاثة عوامل يجب التركيز عليها مع مثال لكل منها.</p>
+        <p><strong>الإجابة المقترحة:</strong> 1. العوامل القانونية (L): مثل القوانين الدولية والمحلية والجهات الرقابية[cite: 467]. 2. العوامل التقنية (T): التغيير والتطورات التكنولوجية[cite: 467]. 3. العوامل الاقتصادية (E): مثل النمو الاقتصادي والتطورات في الوزارات المماثلة[cite: 464].</p>
+    </div>
+
+
+    <h2>القسم الثاني: أسئلة الاختيار من متعدد (40 سؤال)</h2>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">1.</span> هي عملية منهجية تهدف إلى دراسة نظام قائم أو مقترح لفهم مشكلاته واحتياجاته، ثم وضع تصور تفصيلي لنظام جديد: <span class="citation">[cite: 45]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q1"> أ) تحليل النظم فقط</li>
+            <li><input type="radio" name="q1"> ب) تصميم النظم فقط</li>
+            <li><input type="radio" name="q1" checked> ج) تحليل وتصميم نظم المعلومات</li>
+            <li><input type="radio" name="q1"> د) دورة حياة تطوير النظم</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">2.</span> من المهام التي تندرج تحت مرحلة "تحليل نظم المعلومات" (Systems Analysis): <span class="citation">[cite: 47, 48, 49]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q2"> أ) تصميم واجهات المستخدم</li>
+            <li><input type="radio" name="q2"> ب) تصميم قاعدة البيانات</li>
+            <li><input type="radio" name="q2"> ج) إعداد المواصفات الفنية للتنفيذ</li>
+            <li><input type="radio" name="q2" checked> د) تقييم الجدوى التقنية والاقتصادية والتشغيلية</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">3.</span> تعتبر عملية تصميم الإجراءات والضوابط الأمنية جزءاً من مرحلة: <span class="citation">[cite: 51, 53]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q3" checked> أ) تصميم نظم المعلومات</li>
+            <li><input type="radio" name="q3"> ب) تقييم الجدوى الاقتصادية</li>
+            <li><input type="radio" name="q3"> ج) الصيانة الدورية</li>
+            <li><input type="radio" name="q3"> د) دراسة النظام الحالي</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">4.</span> من فوائد وأهمية تحليل وتصميم النظم: <span class="citation">[cite: 61, 62, 63, 64]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q4"> أ) زيادة عدد الموظفين في المؤسسة</li>
+            <li><input type="radio" name="q4" checked> ب) تقليل فشل المشاريع التقنية وتقليل التكاليف والأخطاء</li>
+            <li><input type="radio" name="q4"> ج) زيادة تعقيد العمليات الإدارية</li>
+            <li><input type="radio" name="q4"> د) جميع ما ذكر صحيح</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">5.</span> تتكون مكونات النظام الأساسية من: المدخلات، العمليات، المخرجات، بالإضافة إلى: <span class="citation">[cite: 65, 66, 67, 68, 70]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q5"> أ) التخزين السحابي</li>
+            <li><input type="radio" name="q5" checked> ب) التغذية الراجعة</li>
+            <li><input type="radio" name="q5"> ج) واجهة المستخدم</li>
+            <li><input type="radio" name="q5"> د) الموارد البشرية</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">6.</span> لكي يتحقق التميز (Excellence) بالنظام، يجب التركيز على ستة أمور "صحاح" منها: <span class="citation">[cite: 88, 92, 93]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q6"> أ) عمل الشيء الصحيح بطريقة عشوائية</li>
+            <li><input type="radio" name="q6" checked> ب) عمل الشيء الصحيح بطريقة صحيحة بالوقت الصحيح</li>
+            <li><input type="radio" name="q6"> ج) تحقيق الهدف بأي تكلفة ممكنة</li>
+            <li><input type="radio" name="q6"> د) العمل بدون كادر بشري</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">7.</span> تعرف بأنها "أصغر وحدة عمل" ومثال عليها ملء النماذج أو تحضير التقارير: <span class="citation">[cite: 120]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q7" checked> أ) المهمة (Task)</li>
+            <li><input type="radio" name="q7"> ب) العملية (Process)</li>
+            <li><input type="radio" name="q7"> ج) النظام (System)</li>
+            <li><input type="radio" name="q7"> د) التغذية الراجعة (Feedback)</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">8.</span> المخرجات الأساسية التي تصدر عن العملية خارج نطاق حدودها تُسمى: <span class="citation">[cite: 134, 135]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q8"> أ) المدخلات الخارجية</li>
+            <li><input type="radio" name="q8" checked> ب) المخرجات الخارجية</li>
+            <li><input type="radio" name="q8"> ج) العمليات الفرعية</li>
+            <li><input type="radio" name="q8"> د) التغذية الراجعة</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">9.</span> هي عملية إنشاء تمثيل مرئي أو مخطط يوضح أنظمة جمع المعلومات وأنظمة الإدارة في أي منظمة: <span class="citation">[cite: 189]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q9"> أ) أتمتة الأكواد</li>
+            <li><input type="radio" name="q9" checked> ب) نمذجة البيانات</li>
+            <li><input type="radio" name="q9"> ج) الجدوى الاقتصادية</li>
+            <li><input type="radio" name="q9"> د) اختبار النظام</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">10.</span> من مزايا نمذجة البيانات في المنظمات: <span class="citation">[cite: 192]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q10"> أ) تقليل سرعة النظام</li>
+            <li><input type="radio" name="q10"> ب) زيادة الأخطاء في تطوير قواعد البيانات</li>
+            <li><input type="radio" name="q10" checked> ج) تحقيق الاتساق في وثائق البيانات وتصميم الأنظمة</li>
+            <li><input type="radio" name="q10"> د) زيادة التكلفة التشغيلية</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">11.</span> الخطوة الأولى في خطوات نمذجة وعرض البيانات هي: <span class="citation">[cite: 195]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q11"> أ) اختيار الألوان المناسبة</li>
+            <li><input type="radio" name="q11" checked> ب) تحديد الهدف الرئيسي للتصميم وما الذي يريد المستخدم رؤيته</li>
+            <li><input type="radio" name="q11"> ج) إضافة لمسات شخصية</li>
+            <li><input type="radio" name="q11"> د) تحديد الخطوط المناسبة</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">12.</span> من برامج تحليل البيانات التي تساعد في النمذجة وعرض النتائج: <span class="citation">[cite: 204, 205]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q12"> أ) Photoshop</li>
+            <li><input type="radio" name="q12"> ب) AutoCAD</li>
+            <li><input type="radio" name="q12" checked> ج) SPSS و Power BI و Excel</li>
+            <li><input type="radio" name="q12"> د) WordPad</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">13.</span> الطريقة البيانية التي تعرض البيانات كأعمدة منفصلة لتمثيل فئات مختلفة (مثل مقارنة أنواع الجرائم المختلفة) تسمى: <span class="citation">[cite: 240, 241]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q13" checked> أ) طريقة الأعمدة البيانية البسيطة</li>
+            <li><input type="radio" name="q13"> ب) طريقة المنحنى البياني البسيط</li>
+            <li><input type="radio" name="q13"> ج) المضلع التكراري</li>
+            <li><input type="radio" name="q13"> د) المدرج التكراري</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">14.</span> في الرسوم البيانية، المضلع الذي نحصل عليه بتنصيف الأضلاع العلوية للمستطيلات ونصل بينها يسمى: <span class="citation">[cite: 290, 291, 292]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q14"> أ) المنحنى التكراري</li>
+            <li><input type="radio" name="q14" checked> ب) المضلع التكراري</li>
+            <li><input type="radio" name="q14"> ج) الأعمدة المجزأة</li>
+            <li><input type="radio" name="q14"> د) شجرة المشاكل</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">15.</span> يساعد الذكاء الاصطناعي في مرحلة "تحليل متطلبات النظام" من خلال: <span class="citation">[cite: 364]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q15"> أ) كتابة كود البرمجة بلغة C++</li>
+            <li><input type="radio" name="q15"> ب) تصميم واجهات المستخدم الجرافيكية</li>
+            <li><input type="radio" name="q15" checked> ج) تحليل كميات كبيرة من البيانات واستخراج المتطلبات تلقائياً باستخدام معالجة اللغة الطبيعية</li>
+            <li><input type="radio" name="q15"> د) تعيين الموظفين في المشروع</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">16.</span> إنشاء مخططات UML ومخططات تدفق البيانات تلقائياً، يعتبر دور الذكاء الاصطناعي في مرحلة: <span class="citation">[cite: 367]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q16"> أ) اختبار النظام</li>
+            <li><input type="radio" name="q16" checked> ب) نمذجة النظام (System Modeling)</li>
+            <li><input type="radio" name="q16"> ج) تحسين أداء النظام</li>
+            <li><input type="radio" name="q16"> د) إدارة قواعد البيانات العلاقية</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">17.</span> اكتشاف الأخطاء والثغرات الأمنية والتنبؤ بمناطق الفشل يتم باستخدام أدوات الذكاء الاصطناعي في خطوة: <span class="citation">[cite: 373, 374]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q17" checked> أ) اختبار النظام (System Testing)</li>
+            <li><input type="radio" name="q17"> ب) أتمتة كتابة الكود</li>
+            <li><input type="radio" name="q17"> ج) تحديد أصحاب المصلحة</li>
+            <li><input type="radio" name="q17"> د) بناء الميزانية</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">18.</span> من التحديات المتعلقة باستخدام الذكاء الاصطناعي في عملية التحليل والتصميم: <span class="citation">[cite: 381, 382]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q18"> أ) تقليل الوقت والتكلفة</li>
+            <li><input type="radio" name="q18"> ب) تحسين جودة النظام النهائي</li>
+            <li><input type="radio" name="q18" checked> ج) الحاجة إلى بيانات عالية الجودة ووجود خبرات تقنية متخصصة</li>
+            <li><input type="radio" name="q18"> د) دقة تحليل المتطلبات بنسبة 100% دائماً</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">19.</span> مجموعة من الأنشطة المترابطة غير الروتينية، لها بدايات ونهايات زمنية محددة يتم تنفيذها لتحقيق أهداف محددة، هو تعريف: <span class="citation">[cite: 418]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q19"> أ) العمليات الإدارية</li>
+            <li><input type="radio" name="q19" checked> ب) المشروع</li>
+            <li><input type="radio" name="q19"> ج) التغذية الراجعة</li>
+            <li><input type="radio" name="q19"> د) تحليل PESTLE</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">20.</span> من العناصر التي يجب توافرها في مفهوم المشروع: <span class="citation">[cite: 425, 426, 428]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q20"> أ) أنشطة روتينية يومية مستمرة بلا توقف</li>
+            <li><input type="radio" name="q20"> ب) عدم وجود موازنة مالية لتجنب القيود</li>
+            <li><input type="radio" name="q20" checked> ج) فترة زمنية محددة وموازنة تقديرية وهدف يجب تحقيقه</li>
+            <li><input type="radio" name="q20"> د) تجنب تحقيق معايير الجودة لتقليل التكلفة</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">21.</span> المحددات الثلاثية للمشروع التي تؤثر على نجاحه هي: <span class="citation">[cite: 450, 452, 453, 454]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q21" checked> أ) الوقت، التكاليف، نطاق العمل</li>
+            <li><input type="radio" name="q21"> ب) الجودة، المخاطر، الموارد</li>
+            <li><input type="radio" name="q21"> ج) المدخلات، العمليات، المخرجات</li>
+            <li><input type="radio" name="q21"> د) المبرمجين، المحللين، المدراء</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">22.</span> من أسباب فشل المشاريع المتعلقة بالمحددات الثلاثية: <span class="citation">[cite: 468, 472, 476]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q22"> أ) التسليم قبل الموعد</li>
+            <li><input type="radio" name="q22"> ب) تقليل التكاليف دون المساس بالجودة</li>
+            <li><input type="radio" name="q22" checked> ج) التأخر في المشروع وتجاوز التكلفة ونقص النطاق</li>
+            <li><input type="radio" name="q22"> د) إرضاء جميع أصحاب المصلحة</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">23.</span> في تحليل PESTLE، دراسة النمو الاقتصادي والتطورات في الوزارات والإدارات المماثلة يندرج تحت العوامل: <span class="citation">[cite: 464]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q23"> أ) السياسية (P)</li>
+            <li><input type="radio" name="q23" checked> ب) الاقتصادية (E)</li>
+            <li><input type="radio" name="q23"> ج) الاجتماعية (S)</li>
+            <li><input type="radio" name="q23"> د) التقنية (T)</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">24.</span> في تحليل PESTLE، دراسة القوانين الدولية والمحلية والجهات الرقابية يندرج تحت العوامل: <span class="citation">[cite: 467]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q24" checked> أ) القانونية (L)</li>
+            <li><input type="radio" name="q24"> ب) البيئية (E)</li>
+            <li><input type="radio" name="q24"> ج) التقنية (T)</li>
+            <li><input type="radio" name="q24"> د) السياسية (P)</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">25.</span> دورة حياة المشروع تبدأ بمرحلة: <span class="citation">[cite: 483]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q25"> أ) تنفيذ المشروع</li>
+            <li><input type="radio" name="q25" checked> ب) إدراك فكرة المشروع</li>
+            <li><input type="radio" name="q25"> ج) تشغيل المشروع</li>
+            <li><input type="radio" name="q25"> د) نهاية المشروع</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">26.</span> دراسة الحاجة إلى المشروع ودراسة الجدوى المبدئية (الفنية والمالية) تتم في مرحلة: <span class="citation">[cite: 491, 492]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q26" checked> أ) إدراك فكرة المشروع</li>
+            <li><input type="radio" name="q26"> ب) تنفيذ المشروع</li>
+            <li><input type="radio" name="q26"> ج) تقييم ونهاية المشروع</li>
+            <li><input type="radio" name="q26"> د) تسويق المشروع</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">27.</span> عند تحليل الحاجة أو المشكلة، يمكن البدء بالنظر إلى: <span class="citation">[cite: 496, 503, 504]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q27"> أ) الاحتياجات الخاصة بالمجتمع / المنظمة</li>
+            <li><input type="radio" name="q27"> ب) العوامل الاجتماعية المحيطة</li>
+            <li><input type="radio" name="q27"> ج) الموارد التي يمكن استغلالها</li>
+            <li><input type="radio" name="q27" checked> د) جميع ما ذكر صحيح</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">28.</span> في أسلوب تحليل المشاكل باستخدام "شجرة المشاكل"، يمثل الجذع: <span class="citation">[cite: 530, 531]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q28"> أ) الأسباب</li>
+            <li><input type="radio" name="q28" checked> ب) المشكلة الرئيسية</li>
+            <li><input type="radio" name="q28"> ج) الآثار</li>
+            <li><input type="radio" name="q28"> د) الحلول</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">29.</span> في أسلوب "شجرة المشاكل"، تمثل الجذور: <span class="citation">[cite: 532, 533]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q29" checked> أ) أسباب المشكلة</li>
+            <li><input type="radio" name="q29"> ب) نتائج المشكلة وآثارها</li>
+            <li><input type="radio" name="q29"> ج) المشكلة المركزية</li>
+            <li><input type="radio" name="q29"> د) الميزانية المقترحة لحل المشكلة</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">30.</span> في مثال شركة الحافلات، "فقدان الثقة بشركة الحافلات وإصابة المسافرين" يمثل في شجرة المشاكل: <span class="citation">[cite: 536, 538, 539]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q30"> أ) المشكلة الرئيسية</li>
+            <li><input type="radio" name="q30" checked> ب) الآثار (القمة)</li>
+            <li><input type="radio" name="q30"> ج) الأسباب (الجذور)</li>
+            <li><input type="radio" name="q30"> د) الحلول التقنية</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">31.</span> عند صياغة أهداف المشروع بعد استخدام شجرة المشاكل، نقوم بـ: <span class="citation">[cite: 554]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q31" checked> أ) إعادة صياغة كل الوضعيات السلبية بشكل إيجابي اعتماداً على ما هو منتظر</li>
+            <li><input type="radio" name="q31"> ب) حذف جميع المشاكل وتجاهلها</li>
+            <li><input type="radio" name="q31"> ج) تحويل الأهداف إلى أسباب</li>
+            <li><input type="radio" name="q31"> د) زيادة عدد المشاكل في الجذع</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">32.</span> الجهات التي لها تأثير مباشر وغير مباشر على المشروع والذين يتأثرون بنتائجه هم: <span class="citation">[cite: 559, 560]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q32"> أ) المبرمجون فقط</li>
+            <li><input type="radio" name="q32" checked> ب) أصحاب المصلحة أو الجهات المعنية (Stakeholders)</li>
+            <li><input type="radio" name="q32"> ج) المنافسون فقط</li>
+            <li><input type="radio" name="q32"> د) وزارة التخطيط حصراً</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">33.</span> من ضمن فئات أصحاب المصلحة في نظام القطاع البنكي: <span class="citation">[cite: 567, 568, 569, 572]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q33"> أ) المجتمع والبيئة والأجيال القادمة</li>
+            <li><input type="radio" name="q33"> ب) عملاء البنك والمساهمين</li>
+            <li><input type="radio" name="q33"> ج) إدارة البنك وموظفيه</li>
+            <li><input type="radio" name="q33" checked> د) جميع ما ذكر صحيح</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">34.</span> مرحلة "تحديد المشروع" تتضمن: <span class="citation">[cite: 595, 596]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q34"> أ) الرقابة على تنفيذ المشروع</li>
+            <li><input type="radio" name="q34"> ب) تصفية وإنهاء المشروع</li>
+            <li><input type="radio" name="q34" checked> ج) تحديد الموارد اللازمة ووضع الخطط التفصيلية والموازنات والجداول الزمنية</li>
+            <li><input type="radio" name="q34"> د) تقييم الأثر والاستدامة بعد إطلاق الخدمة</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">35.</span> في مرحلة تحديد المشروع، توفير وحصر وتصنيف جميع المعلومات ضمن نماذج خاصة مع تعريف العاملين بها يسمى: <span class="citation">[cite: 600]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q35"> أ) تصميم نظم المتابعة</li>
+            <li><input type="radio" name="q35" checked> ب) التوثيق</li>
+            <li><input type="radio" name="q35"> ج) الموارد البشرية</li>
+            <li><input type="radio" name="q35"> د) الموازنة</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">36.</span> الرقابة على التنفيذ ورفع التقارير (يومياً، أسبوعياً) ومقارنة ما تم تنفيذه مع ما تم التخطيط له، يندرج ضمن مرحلة: <span class="citation">[cite: 619, 620]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q36" checked> أ) مرحلة التنفيذ</li>
+            <li><input type="radio" name="q36"> ب) مرحلة إدراك الفكرة</li>
+            <li><input type="radio" name="q36"> ج) مرحلة التشغيل</li>
+            <li><input type="radio" name="q36"> د) مرحلة نهاية المشروع</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">37.</span> تقديم الخدمة والمنتج اللذين يهدف المشروع إلى تقديمهما، وتقييم مدى تحقيق المشروع للأهداف يتم في مرحلة: <span class="citation">[cite: 631, 632]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q37"> أ) التنفيذ</li>
+            <li><input type="radio" name="q37"> ب) التحديد</li>
+            <li><input type="radio" name="q37" checked> ج) تشغيل المشروع</li>
+            <li><input type="radio" name="q37"> د) نهاية المشروع</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">38.</span> في مرحلة تشغيل المشروع، قياس الانعكاسات الحقيقية على المستفيدين باستخدام معايير وأدوات قياس موضوعية يسمى: <span class="citation">[cite: 637]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q38"> أ) تسويق المشروع</li>
+            <li><input type="radio" name="q38" checked> ب) قياس الأثر والاستدامة</li>
+            <li><input type="radio" name="q38"> ج) أتمتة الكود</li>
+            <li><input type="radio" name="q38"> د) التوثيق</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">39.</span> تصفية المشروع وتحويل موارده إلى مشاريع أخرى والاستفادة من الدروس الخاصة به، يندرج تحت مرحلة: <span class="citation">[cite: 641, 642]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q39"> أ) تشغيل المشروع</li>
+            <li><input type="radio" name="q39"> ب) تنفيذ المشروع</li>
+            <li><input type="radio" name="q39" checked> ج) نهاية المشروع</li>
+            <li><input type="radio" name="q39"> د) تحديد المشروع</li>
+        </ul>
+    </div>
+
+    <div class="question-block">
+        <p class="question-text"><span class="q-number">40.</span> يمكننا استخدام برنامج Microsoft Project وغيرها من أدوات الجدولة لمتابعة وتحديد: <span class="citation">[cite: 645, 649]</span></p>
+        <ul class="options">
+            <li><input type="radio" name="q40"> أ) شجرة المشاكل جذرياً</li>
+            <li><input type="radio" name="q40" checked> ب) نشاطات المشروع، المدة الزمنية لكل نشاط، ومواعيد البداية والنهاية (Start/Finish)</li>
+            <li><input type="radio" name="q40"> ج) قواعد البيانات الخاصة بالعملاء</li>
+            <li><input type="radio" name="q40"> د) معالجة اللغة الطبيعية للذكاء الاصطناعي</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
