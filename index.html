@@ -3,568 +3,438 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>امتحان شامل: تحليل وتصميم نظم المعلومات</title>
+    <title>امتحان تحليل وتصميم نظم المعلومات | إعداد قيس جازي</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Tajawal for modern Arabic typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#4da8da',
+                            DEFAULT: '#12232e',
+                            dark: '#007cc7',
+                            accent: '#eefbfb'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9fbfd;
-            color: #333;
-            line-height: 1.8;
-            padding: 20px;
+            /* Ship Background Image */
+            background-image: url('https://images.unsplash.com/photo-1551004313-68e82a6e9a6e?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+        /* Glassmorphism Effect */
+        .glass {
+            background: rgba(18, 35, 46, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        h2 {
-            color: #2980b9;
-            margin-top: 40px;
-            border-right: 4px solid #e74c3c;
-            padding-right: 10px;
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 0.15);
         }
-        .scenario-card {
-            background-color: #fdfefe;
-            border: 1px solid #dce1e3;
-            border-right: 5px solid #f39c12;
-            padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 5px;
+
+        /* Custom Radio Buttons */
+        .custom-radio input[type="radio"] {
+            display: none;
         }
-        .scenario-card h3 {
-            margin-top: 0;
-            color: #d35400;
-        }
-        .question-block {
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed #ecf0f1;
-        }
-        .question-text {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-        .options {
-            list-style-type: none;
-            padding: 0;
-        }
-        .options li {
-            margin-bottom: 8px;
-            background: #f4f6f7;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #eaeded;
+        .custom-radio label {
             display: flex;
             align-items: center;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
         }
-        .options input {
+        .custom-radio label:hover {
+            background: rgba(77, 168, 218, 0.2);
+        }
+        .custom-radio input[type="radio"]:checked + label {
+            background: rgba(77, 168, 218, 0.5);
+            border-color: #4da8da;
+            font-weight: bold;
+        }
+        .custom-radio .radio-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #fff;
             margin-left: 10px;
+            display: inline-block;
+            position: relative;
+        }
+        .custom-radio input[type="radio"]:checked + label .radio-circle::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Smooth reveal for scenario answers */
+        details > summary {
+            list-style: none;
             cursor: pointer;
         }
-        .citation {
-            font-size: 0.85em;
-            color: #95a5a6;
-            margin-right: 5px;
+        details > summary::-webkit-details-marker {
+            display: none;
         }
-        .q-number {
-            color: #e74c3c;
-            font-weight: bold;
+        details[open] summary ~ * {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4da8da;
+            border-radius: 10px;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen py-10 px-4 sm:px-6 lg:px-8 font-sans antialiased">
 
-<div class="container">
-    <h1>امتحان شامل: تحليل وتصميم نظم المعلومات</h1>
+    <!-- Overlay gradient for better readability -->
+    <div class="fixed inset-0 bg-gradient-to-b from-brand-DEFAULT/80 to-brand-DEFAULT/95 -z-10"></div>
 
-    <h2>القسم الأول: أسئلة السيناريو والمواقف (10 سيناريوهات)</h2>
-    <p>اقرأ كل سيناريو بعناية ثم أجب عن السؤال الذي يليه مفترضاً دورك كمحلل أو مدير للمشروع.</p>
+    <div class="max-w-5xl mx-auto glass rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+        
+        <!-- Decorative Elements -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-light rounded-full mix-blend-multiply filter blur-3xl opacity-20 transform translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-brand-dark rounded-full mix-blend-multiply filter blur-3xl opacity-20 transform -translate-x-1/2 translate-y-1/2"></div>
 
-    <div class="scenario-card">
-        <h3>سيناريو 1: الذكاء الاصطناعي في مستشفى الأمل</h3>
-        <p>قررت إدارة المستشفى الاستعانة بالذكاء الاصطناعي لتطوير نظام حجز المواعيد وتخفيف الضغط على الموظفين وتحليل الشكاوى الواردة في رسائل البريد الإلكتروني. [cite: 364, 385]</p>
-        <p class="question-text">سؤال: بصفتك محلل نظم، كيف يمكن للذكاء الاصطناعي مساعدتك في مرحلة "تحليل متطلبات النظام" بشكل محدد في هذه الحالة؟</p>
-        <p><strong>الإجابة المقترحة:</strong> يمكن لنظام الذكاء الاصطناعي استخراج المتطلبات تلقائياً من الوثائق ورسائل البريد الإلكتروني للمرضى باستخدام تقنيات معالجة اللغة الطبيعية، وتحليلها لفهم احتياجات المستخدمين، واكتشاف التناقضات[cite: 364]. سينتج عن ذلك تحديد متطلبات وظيفية مثل: تسجيل المرضى، حجز موعد، وإلغاء موعد[cite: 391, 392, 393].</p>
+        <!-- Header -->
+        <header class="text-center mb-16 relative z-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-l from-cyan-300 to-blue-500 mb-4 tracking-tight">
+                <i class="fa-solid fa-ship mr-2"></i> امتحان تحليل وتصميم نظم المعلومات
+            </h1>
+            <div class="inline-block glass px-6 py-2 rounded-full border border-cyan-400/30">
+                <p class="text-lg text-cyan-100 font-bold tracking-wide">
+                    <i class="fa-solid fa-pen-nib ml-2 text-cyan-400"></i> إعداد: قيس جازي
+                </p>
+            </div>
+            <p class="mt-6 text-gray-300 text-lg max-w-2xl mx-auto">
+                اختبر معلوماتك وقدرتك على التحليل من خلال السيناريوهات العملية وأسئلة الاختيار من متعدد المصممة بعناية.
+            </p>
+        </header>
+
+        <!-- Section 1: Scenarios -->
+        <section class="mb-20 relative z-10">
+            <div class="flex items-center mb-8">
+                <div class="bg-cyan-500 p-3 rounded-xl mr-4">
+                    <i class="fa-solid fa-user-tie text-2xl text-white"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-white">القسم الأول: السيناريوهات وحل المشكلات</h2>
+            </div>
+            <p class="text-gray-300 mb-8">تقمص دور محلل النظم أو مدير المشروع وأجب عن الحالات التالية. (انقر على "عرض الحل المقترح" للتأكد من إجابتك).</p>
+
+            <div class="space-y-6">
+                <!-- Scenarios 1 to 10 generated via JS to keep HTML clean -->
+                <div id="scenarios-container"></div>
+            </div>
+        </section>
+
+        <!-- Section 2: MCQs -->
+        <section class="relative z-10">
+            <div class="flex items-center mb-8">
+                <div class="bg-blue-500 p-3 rounded-xl mr-4">
+                    <i class="fa-solid fa-list-check text-2xl text-white"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-white">القسم الثاني: أسئلة الاختيار من متعدد</h2>
+            </div>
+            
+            <form id="quiz-form" class="space-y-8">
+                <div id="mcq-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- MCQs will be injected here via JS -->
+                </div>
+
+                <div class="text-center mt-12 pt-8 border-t border-white/20">
+                    <button type="submit" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-4 px-12 rounded-full text-xl shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 transform hover:-translate-y-1">
+                        <i class="fa-solid fa-flag-checkered ml-2"></i> إنهاء الامتحان وعرض النتيجة
+                    </button>
+                </div>
+            </form>
+        </section>
+
     </div>
 
-    <div class="scenario-card">
-        <h3>سيناريو 2: منصة التعليم الإلكتروني "إدراك"</h3>
-        <p>تواجه منصة تعليمية مشاكل في تعطل النظام خلال فترات الامتحانات بسبب الضغط المفاجئ، وترغب في استخدام تقنيات حديثة لتفادي ذلك. [cite: 405, 408]</p>
-        <p class="question-text">سؤال: بصفتك مدير المشروع التقني، ما هي الأداة التي ستستخدمها وكيف ستعالج المشكلة؟</p>
-        <p><strong>الإجابة المقترحة:</strong> سأستخدم التعلم الآلي والذكاء الاصطناعي للتنبؤ باحتياجات النظام المستقبلية والتنبؤ بزيادة الضغط خلال فترة الامتحانات من خلال تحليل عدد الطلبة وأوقات الدخول[cite: 404, 405, 406, 408]. التوصية ستكون بزيادة سعة الخادم واستخدام الحوسبة السحابية[cite: 409, 410, 411].</p>
+    <!-- Result Modal -->
+    <div id="result-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div class="glass p-10 rounded-3xl max-w-md w-full text-center mx-4 border-2 border-cyan-400/50 shadow-2xl shadow-cyan-500/20 transform scale-95 transition-transform duration-300">
+            <i class="fa-solid fa-trophy text-6xl text-yellow-400 mb-6"></i>
+            <h2 class="text-3xl font-bold text-white mb-2">النتيجة النهائية</h2>
+            <p class="text-cyan-200 mb-6 font-bold text-lg">من إعداد: قيس جازي</p>
+            <div class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-500 mb-6">
+                <span id="score-display">0</span> / 40
+            </div>
+            <p id="score-message" class="text-xl text-gray-200 mb-8"></p>
+            <button onclick="closeModal()" class="w-full bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold py-3 px-6 rounded-xl transition duration-300">
+                إغلاق ومراجعة الأخطاء
+            </button>
+        </div>
     </div>
 
-    <div class="scenario-card">
-        <h3>سيناريو 3: نظام الدفع الإلكتروني الجديد</h3>
-        <p>تعمل شركة تجارية على برمجة نظام دفع إلكتروني جديد، وتريد التأكد من خلوه من الثغرات قبل إطلاقه للجمهور. [cite: 397]</p>
-        <p class="question-text">سؤال: كيف يمكنك تطبيق الذكاء الاصطناعي في مرحلة "اختبار النظام" (System Testing)؟</p>
-        <p><strong>الإجابة المقترحة:</strong> بإنشاء حالات اختبار تلقائية مثل إدخال رقم بطاقة غير صحيح، أو محاكاة انقطاع الإنترنت أثناء الدفع، أو محاولة دفع مكرر لاكتشاف الأخطاء والثغرات الأمنية واقتراح طرق المعالجة[cite: 373, 374, 398, 399, 400, 401, 402].</p>
-    </div>
+    <script>
+        // --- Data for Scenarios ---
+        const scenarios = [
+            {
+                title: "1. الذكاء الاصطناعي في مستشفى الأمل",
+                text: "قررت إدارة المستشفى الاستعانة بالذكاء الاصطناعي لتطوير نظام حجز المواعيد وتخفيف الضغط على الموظفين وتحليل الشكاوى الواردة في رسائل البريد الإلكتروني.",
+                question: "بصفتك محلل نظم، كيف يمكن للذكاء الاصطناعي مساعدتك في مرحلة \"تحليل متطلبات النظام\" بشكل محدد في هذه الحالة؟",
+                answer: "يمكن استخراج المتطلبات تلقائياً من الوثائق ورسائل البريد الإلكتروني للمرضى باستخدام تقنيات معالجة اللغة الطبيعية، وتحليلها لفهم احتياجات المستخدمين، واكتشاف التناقضات لتحديد متطلبات وظيفية مثل: تسجيل المرضى، حجز، وإلغاء."
+            },
+            {
+                title: "2. منصة التعليم الإلكتروني \"إدراك\"",
+                text: "تواجه منصة تعليمية مشاكل في تعطل النظام خلال فترات الامتحانات بسبب الضغط المفاجئ، وترغب في استخدام تقنيات حديثة لتفادي ذلك.",
+                question: "بصفتك مدير المشروع التقني، كيف ستعالج المشكلة باستخدام الذكاء الاصطناعي؟",
+                answer: "سأستخدم التعلم الآلي للتنبؤ باحتياجات النظام المستقبلية وزيادة الضغط خلال فترة الامتحانات من خلال تحليل عدد الطلبة وأوقات الدخول، وتقديم توصية بزيادة سعة الخادم واستخدام الحوسبة السحابية مسبقاً."
+            },
+            {
+                title: "3. نظام الدفع الإلكتروني الجديد",
+                text: "تعمل شركة تجارية على برمجة نظام دفع إلكتروني جديد، وتريد التأكد من خلوه من الثغرات قبل إطلاقه للجمهور.",
+                question: "كيف يمكنك تطبيق الذكاء الاصطناعي في مرحلة \"اختبار النظام\" (System Testing)؟",
+                answer: "بإنشاء حالات اختبار تلقائية مثل إدخال رقم بطاقة غير صحيح، محاكاة انقطاع الإنترنت أثناء الدفع، أو محاولة دفع مكرر لاكتشاف الأخطاء والثغرات الأمنية واقتراح طرق المعالجة."
+            },
+            {
+                title: "4. التخبط في نظام التسجيل الجامعي",
+                text: "جامعة تريد الانتقال من التسجيل اليدوي إلى الإلكتروني. طلب منك العميد دراسة المشاكل الحالية ثم البدء فوراً في إنشاء قاعدة بيانات للطلبة.",
+                question: "هل دمج العميد بين مرحلتين مختلفتين؟ وضح الفرق بين ما طلبه.",
+                answer: "نعم، دراسة مشاكل التسجيل اليدوي وصلاحيات المستخدمين تندرج تحت مرحلة \"تحليل نظم المعلومات\"، بينما إنشاء قاعدة بيانات للطلبة وتصميم شاشات التسجيل تندرج تحت مرحلة \"تصميم نظم المعلومات\"."
+            },
+            {
+                title: "5. حوادث شركة الحافلات (تحليل المشاكل)",
+                text: "تعاني شركة نقل من تكرار حوادث الحافلات مما أدى إلى إصابة المسافرين وفقدان الثقة بالشركة. طلب منك مجلس الإدارة تحليل الوضع.",
+                question: "باستخدام \"شجرة المشاكل\"، حدد المشكلة الرئيسية (الجذع)، الأسباب (الجذور)، والآثار (القمة).",
+                answer: "المشكلة المركزية (الجذع): حوادث الحافلات متكررة. الأسباب (الجذور): تدهور الطرق، حافلات قديمة، عدم تبصر السائقين. الآثار (القمة): إصابات، وصول متأخر، فقدان الثقة."
+            },
+            {
+                title: "6. إطلاق خدمات بنكية وتحديد المعنيين",
+                text: "ينوي بنك إطلاق خدمات مصرفية إلكترونية جديدة. لتجنب الفشل، أكد مدير الجودة على ضرورة تحديد الأشخاص والجهات ذات العلاقة.",
+                question: "من هم \"أصحاب المصلحة\" (Stakeholders) في هذا المشروع؟ (اذكر 4 على الأقل)",
+                answer: "إدارة البنك، موظفي البنك، عملاء البنك، المساهمين، الجهات الحكومية، والمجتمع/البيئة."
+            },
+            {
+                title: "7. الازدحام وتقليص المعاملات (النافذة الواحدة)",
+                text: "مؤسسة قلصت خطوات إنجاز المعاملة من 33 يوماً إلى 5 أيام عن طريق إنشاء \"نافذة خدمة واحدة\" (One Stop Shopping) للمراجعين.",
+                question: "بصفتك مدير عمليات، كيف تبرر نجاح هذا الإجراء من منظور \"تحليل العمليات\"؟",
+                answer: "تم النجاح من خلال تحليل \"المهام\" (أصغر وحدة عمل)، وتقليص ودمج خطوات السكرتاريا والخطوات الفنية للوصول إلى مؤسسة رقمية تقدم الخدمة بواقع وقفة واحدة."
+            },
+            {
+                title: "8. أبعاد التميز في تقديم الخدمة",
+                text: "أطلقت دائرة حكومية نظاماً إلكترونياً متطوراً جداً، لكن الموظفين لم يتدربوا عليه وتم إطلاقه في وقت إجازات الأعياد مما أدى لتوقفه.",
+                question: "أي من أركان \"التميز\" (Excellence) الستة تم الإخلال بها في هذا المشروع؟",
+                answer: "تم الإخلال بمبدأ \"بالوقت الصحيح\" (إطلاقه في الأعياد)، ومبدأ \"مع الناس الأصحاح / الشخص المناسب\" (بسبب عدم تدريب الموظفين وكفاءتهم للتعامل معه)."
+            },
+            {
+                title: "9. تعثر بناء المصنع الذكي",
+                text: "مشروع بناء مصنع واجه تأخيراً في التسليم وزيادة غير متوقعة في الميزانية بسبب إضافة المالك لمتطلبات تقنية جديدة أثناء التنفيذ.",
+                question: "ما هي \"المحددات الثلاثية\" للمشروع التي تأثرت بشكل مباشر في هذه الحالة؟",
+                answer: "تأثرت المحددات الثلاثية للمشروع وهي: \"الزمن\" (تأخر المشروع)، \"التكلفة\" (تجاوز الميزانية)، و\"نطاق العمل\" (إضافة متطلبات جديدة)."
+            },
+            {
+                title: "10. دراسة السوق والبيئة (PESTLE)",
+                text: "شركة تطوير برمجيات تريد الدخول في سوق دولة جديدة، وطلب منك تحليل العوامل الخارجية التي قد تؤثر على نجاح أنظمتهم هناك.",
+                question: "باستخدام أداة PESTLE، اذكر ثلاثة عوامل يجب التركيز عليها مع مثال لكل منها.",
+                answer: "1. العوامل القانونية (L): القوانين الدولية والمحلية للبيانات. 2. التقنية (T): التطورات التكنولوجية في البلد. 3. الاقتصادية (E): النمو الاقتصادي وميزانيات الوزارات المماثلة."
+            }
+        ];
 
-    <div class="scenario-card">
-        <h3>سيناريو 4: نظام التسجيل الجامعي</h3>
-        <p>جامعة تريد الانتقال من التسجيل اليدوي إلى الإلكتروني. طلب منك العميد دراسة المشاكل الحالية ثم البدء فوراً في إنشاء قاعدة بيانات للطلبة. [cite: 56, 57, 59]</p>
-        <p class="question-text">سؤال: هل دمج العميد بين مرحلتين مختلفتين؟ وضح الفرق بين ما طلبه.</p>
-        <p><strong>الإجابة المقترحة:</strong> نعم، دراسة مشاكل التسجيل اليدوي وصلاحيات المستخدمين تندرج تحت مرحلة "تحليل نظم المعلومات" [cite: 47, 57, 58]، بينما إنشاء قاعدة بيانات للطلبة وتصميم شاشات التسجيل تندرج تحت مرحلة "تصميم نظم المعلومات"[cite: 51, 52, 59].</p>
-    </div>
+        const scenariosContainer = document.getElementById('scenarios-container');
+        scenarios.forEach((scenario, index) => {
+            const html = `
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 bg-cyan-500 text-white w-10 h-10 flex items-center justify-center rounded-bl-2xl font-bold">${index + 1}</div>
+                    <h3 class="text-xl font-bold text-cyan-300 mb-3 pr-8">${scenario.title}</h3>
+                    <p class="text-gray-200 mb-4 leading-relaxed"><i class="fa-solid fa-quote-right text-cyan-500/50 mr-2 ml-1"></i> ${scenario.text}</p>
+                    <p class="font-bold text-white mb-4 text-lg"><i class="fa-solid fa-circle-question text-yellow-400 ml-2"></i>السؤال: ${scenario.question}</p>
+                    <details class="mt-4 border border-cyan-500/30 rounded-xl overflow-hidden bg-white/5">
+                        <summary class="p-4 font-bold text-cyan-400 hover:bg-white/10 transition outline-none flex justify-between items-center">
+                            <span><i class="fa-solid fa-lightbulb ml-2"></i> عرض الحل المقترح من المحلل</span>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <div class="p-4 border-t border-cyan-500/30 text-green-300 bg-black/20 leading-relaxed">
+                            ${scenario.answer}
+                        </div>
+                    </details>
+                </div>
+            `;
+            scenariosContainer.innerHTML += html;
+        });
 
-    <div class="scenario-card">
-        <h3>سيناريو 5: حوادث شركة الحافلات</h3>
-        <p>تعاني شركة نقل من تكرار حوادث الحافلات مما أدى إلى إصابة المسافرين وفقدان الثقة بالشركة. طلب منك مجلس الإدارة تحليل الوضع. [cite: 536, 539, 541]</p>
-        <p class="question-text">سؤال: باستخدام "شجرة المشاكل"، حدد المشكلة الرئيسية، الأسباب، والآثار.</p>
-        <p><strong>الإجابة المقترحة:</strong> المشكلة المركزية (الجذع) هي: حوادث الحافلات متكررة[cite: 530, 541]. الأسباب (الجذور) هي: تدهور حالة الطرق، حافلات قديمة جداً، عدم تبصر السائقين، وغياب الصيانة[cite: 532, 542, 544, 545]. الآثار (القمة) هي: إصابة المسافرين، والوصول المتأخر، وفقدان الثقة بالشركة[cite: 528, 536, 538, 539].</p>
-    </div>
+        // --- Data for MCQs (40 Questions) ---
+        const mcqs = [
+            { q: "عملية منهجية تهدف إلى دراسة نظام قائم أو مقترح لفهم مشكلاته واحتياجاته، ثم وضع تصور تفصيلي لنظام جديد:", options: ["أ) تحليل النظم فقط", "ب) تصميم النظم فقط", "ج) تحليل وتصميم نظم المعلومات", "د) دورة حياة تطوير النظم"], correct: 2 },
+            { q: "من المهام التي تندرج تحت مرحلة 'تحليل نظم المعلومات' (Systems Analysis):", options: ["أ) تصميم واجهات المستخدم", "ب) تصميم قاعدة البيانات", "ج) إعداد المواصفات الفنية للتنفيذ", "د) تقييم الجدوى التقنية والاقتصادية والتشغيلية"], correct: 3 },
+            { q: "تعتبر عملية تصميم الإجراءات والضوابط الأمنية جزءاً من مرحلة:", options: ["أ) تصميم نظم المعلومات", "ب) تقييم الجدوى الاقتصادية", "ج) الصيانة الدورية", "د) دراسة النظام الحالي"], correct: 0 },
+            { q: "من فوائد وأهمية تحليل وتصميم النظم:", options: ["أ) زيادة عدد الموظفين في المؤسسة", "ب) تقليل فشل المشاريع التقنية وتقليل التكاليف والأخطاء", "ج) زيادة تعقيد العمليات الإدارية", "د) جميع ما ذكر صحيح"], correct: 1 },
+            { q: "تتكون مكونات النظام الأساسية من: المدخلات، العمليات، المخرجات، بالإضافة إلى:", options: ["أ) التخزين السحابي", "ب) التغذية الراجعة", "ج) واجهة المستخدم", "د) الموارد البشرية"], correct: 1 },
+            { q: "لكي يتحقق التميز (Excellence) بالنظام، يجب التركيز على ستة أمور 'صحاح' منها:", options: ["أ) عمل الشيء الصحيح بطريقة عشوائية", "ب) عمل الشيء الصحيح بطريقة صحيحة بالوقت الصحيح", "ج) تحقيق الهدف بأي تكلفة ممكنة", "د) العمل بدون كادر بشري"], correct: 1 },
+            { q: "تعرف بأنها 'أصغر وحدة عمل' ومثال عليها ملء النماذج أو تحضير التقارير:", options: ["أ) المهمة (Task)", "ب) العملية (Process)", "ج) النظام (System)", "د) التغذية الراجعة (Feedback)"], correct: 0 },
+            { q: "المخرجات الأساسية التي تصدر عن العملية خارج نطاق حدودها تُسمى:", options: ["أ) المدخلات الخارجية", "ب) المخرجات الخارجية", "ج) العمليات الفرعية", "د) التغذية الراجعة"], correct: 1 },
+            { q: "عملية إنشاء تمثيل مرئي أو مخطط يوضح أنظمة جمع المعلومات وأنظمة الإدارة في أي منظمة هي:", options: ["أ) أتمتة الأكواد", "ب) نمذجة البيانات", "ج) الجدوى الاقتصادية", "د) اختبار النظام"], correct: 1 },
+            { q: "من مزايا نمذجة البيانات في المنظمات:", options: ["أ) تقليل سرعة النظام", "ب) زيادة الأخطاء في تطوير قواعد البيانات", "ج) تحقيق الاتساق في وثائق البيانات وتصميم الأنظمة", "د) زيادة التكلفة التشغيلية"], correct: 2 },
+            { q: "الخطوة الأولى في خطوات نمذجة وعرض البيانات هي:", options: ["أ) اختيار الألوان المناسبة", "ب) تحديد الهدف الرئيسي للتصميم وما الذي يريد المستخدم رؤيته", "ج) إضافة لمسات شخصية", "د) تحديد الخطوط المناسبة"], correct: 1 },
+            { q: "من برامج تحليل البيانات التي تساعد في النمذجة وعرض النتائج:", options: ["أ) Photoshop", "ب) AutoCAD", "ج) SPSS و Power BI و Excel", "د) WordPad"], correct: 2 },
+            { q: "الطريقة البيانية التي تعرض البيانات كأعمدة منفصلة لتمثيل فئات مختلفة تسمى:", options: ["أ) طريقة الأعمدة البيانية البسيطة", "ب) طريقة المنحنى البياني البسيط", "ج) المضلع التكراري", "د) المدرج التكراري"], correct: 0 },
+            { q: "المضلع الذي نحصل عليه بتنصيف الأضلاع العلوية للمستطيلات ونصل بينها يسمى:", options: ["أ) المنحنى التكراري", "ب) المضلع التكراري", "ج) الأعمدة المجزأة", "د) شجرة المشاكل"], correct: 1 },
+            { q: "يساعد الذكاء الاصطناعي في مرحلة 'تحليل متطلبات النظام' من خلال:", options: ["أ) كتابة كود البرمجة بلغة C++", "ب) تصميم واجهات المستخدم الجرافيكية", "ج) تحليل كميات كبيرة من البيانات واستخراج المتطلبات تلقائياً باستخدام معالجة اللغة الطبيعية", "د) تعيين الموظفين في المشروع"], correct: 2 },
+            { q: "إنشاء مخططات UML ومخططات تدفق البيانات تلقائياً، يعتبر دور الذكاء الاصطناعي في مرحلة:", options: ["أ) اختبار النظام", "ب) نمذجة النظام (System Modeling)", "ج) تحسين أداء النظام", "د) إدارة قواعد البيانات"], correct: 1 },
+            { q: "اكتشاف الأخطاء والثغرات الأمنية والتنبؤ بمناطق الفشل يتم باستخدام أدوات الذكاء الاصطناعي في خطوة:", options: ["أ) اختبار النظام (System Testing)", "ب) أتمتة كتابة الكود", "ج) تحديد أصحاب المصلحة", "د) بناء الميزانية"], correct: 0 },
+            { q: "من التحديات المتعلقة باستخدام الذكاء الاصطناعي في عملية التحليل والتصميم:", options: ["أ) تقليل الوقت والتكلفة", "ب) تحسين جودة النظام النهائي", "ج) الحاجة إلى بيانات عالية الجودة ووجود خبرات تقنية متخصصة", "د) دقة تحليل المتطلبات بنسبة 100% دائماً"], correct: 2 },
+            { q: "مجموعة من الأنشطة المترابطة غير الروتينية، لها بدايات ونهايات زمنية محددة يتم تنفيذها لتحقيق أهداف محددة، هو تعريف:", options: ["أ) العمليات الإدارية", "ب) المشروع", "ج) التغذية الراجعة", "د) تحليل PESTLE"], correct: 1 },
+            { q: "من العناصر التي يجب توافرها في مفهوم المشروع:", options: ["أ) أنشطة روتينية يومية مستمرة بلا توقف", "ب) عدم وجود موازنة مالية لتجنب القيود", "ج) فترة زمنية محددة وموازنة تقديرية وهدف يجب تحقيقه", "د) تجنب تحقيق معايير الجودة لتقليل التكلفة"], correct: 2 },
+            { q: "المحددات الثلاثية للمشروع التي تؤثر على نجاحه هي:", options: ["أ) الوقت، التكاليف، نطاق العمل", "ب) الجودة، المخاطر، الموارد", "ج) المدخلات، العمليات، المخرجات", "د) المبرمجين، المحللين، المدراء"], correct: 0 },
+            { q: "من أسباب فشل المشاريع المتعلقة بالمحددات الثلاثية:", options: ["أ) التسليم قبل الموعد", "ب) تقليل التكاليف دون المساس بالجودة", "ج) التأخر في المشروع وتجاوز التكلفة ونقص النطاق", "د) إرضاء جميع أصحاب المصلحة"], correct: 2 },
+            { q: "في تحليل PESTLE، دراسة النمو الاقتصادي والتطورات في الوزارات والإدارات المماثلة يندرج تحت العوامل:", options: ["أ) السياسية (P)", "ب) الاقتصادية (E)", "ج) الاجتماعية (S)", "د) التقنية (T)"], correct: 1 },
+            { q: "في تحليل PESTLE، دراسة القوانين الدولية والمحلية والجهات الرقابية يندرج تحت العوامل:", options: ["أ) القانونية (L)", "ب) البيئية (E)", "ج) التقنية (T)", "د) السياسية (P)"], correct: 0 },
+            { q: "دورة حياة المشروع تبدأ بمرحلة:", options: ["أ) تنفيذ المشروع", "ب) إدراك فكرة المشروع", "ج) تشغيل المشروع", "د) نهاية المشروع"], correct: 1 },
+            { q: "دراسة الحاجة إلى المشروع ودراسة الجدوى المبدئية (الفنية والمالية) تتم في مرحلة:", options: ["أ) إدراك فكرة المشروع", "ب) تنفيذ المشروع", "ج) تقييم ونهاية المشروع", "د) تسويق المشروع"], correct: 0 },
+            { q: "عند تحليل الحاجة أو المشكلة، يمكن البدء بالنظر إلى:", options: ["أ) الاحتياجات الخاصة بالمجتمع / المنظمة", "ب) العوامل الاجتماعية المحيطة", "ج) الموارد التي يمكن استغلالها", "د) جميع ما ذكر صحيح"], correct: 3 },
+            { q: "في أسلوب تحليل المشاكل باستخدام 'شجرة المشاكل'، يمثل الجذع:", options: ["أ) الأسباب", "ب) المشكلة الرئيسية", "ج) الآثار", "د) الحلول"], correct: 1 },
+            { q: "في أسلوب 'شجرة المشاكل'، تمثل الجذور:", options: ["أ) أسباب المشكلة", "ب) نتائج المشكلة وآثارها", "ج) المشكلة المركزية", "د) الميزانية المقترحة"], correct: 0 },
+            { q: "في مثال شركة الحافلات، 'فقدان الثقة بشركة الحافلات وإصابة المسافرين' يمثل في شجرة المشاكل:", options: ["أ) المشكلة الرئيسية", "ب) الآثار (القمة)", "ج) الأسباب (الجذور)", "د) الحلول التقنية"], correct: 1 },
+            { q: "عند صياغة أهداف المشروع بعد استخدام شجرة المشاكل، نقوم بـ:", options: ["أ) إعادة صياغة كل الوضعيات السلبية بشكل إيجابي بناءً على ما هو منتظر", "ب) حذف جميع المشاكل وتجاهلها", "ج) تحويل الأهداف إلى أسباب", "د) زيادة عدد المشاكل في الجذع"], correct: 0 },
+            { q: "الجهات التي لها تأثير مباشر وغير مباشر على المشروع والذين يتأثرون بنتائجه هم:", options: ["أ) المبرمجون فقط", "ب) أصحاب المصلحة أو الجهات المعنية (Stakeholders)", "ج) المنافسون فقط", "د) وزارة التخطيط حصراً"], correct: 1 },
+            { q: "من ضمن فئات أصحاب المصلحة في نظام القطاع البنكي:", options: ["أ) المجتمع والبيئة والأجيال القادمة", "ب) عملاء البنك والمساهمين", "ج) إدارة البنك وموظفيه", "د) جميع ما ذكر صحيح"], correct: 3 },
+            { q: "مرحلة 'تحديد المشروع' تتضمن:", options: ["أ) الرقابة على تنفيذ المشروع", "ب) تصفية وإنهاء المشروع", "ج) تحديد الموارد اللازمة ووضع الخطط التفصيلية والموازنات والجداول الزمنية", "د) تقييم الأثر والاستدامة بعد إطلاق الخدمة"], correct: 2 },
+            { q: "في مرحلة تحديد المشروع، توفير وحصر وتصنيف جميع المعلومات ضمن نماذج خاصة مع تعريف العاملين بها يسمى:", options: ["أ) تصميم نظم المتابعة", "ب) التوثيق", "ج) الموارد البشرية", "د) الموازنة"], correct: 1 },
+            { q: "الرقابة على التنفيذ ورفع التقارير (يومياً، أسبوعياً) ومقارنة ما تم تنفيذه مع المخطط له، يندرج ضمن مرحلة:", options: ["أ) مرحلة التنفيذ", "ب) مرحلة إدراك الفكرة", "ج) مرحلة التشغيل", "د) مرحلة نهاية المشروع"], correct: 0 },
+            { q: "تقديم الخدمة والمنتج اللذين يهدف المشروع إلى تقديمهما، وتقييم مدى تحقيق المشروع للأهداف يتم في مرحلة:", options: ["أ) التنفيذ", "ب) التحديد", "ج) تشغيل المشروع", "د) نهاية المشروع"], correct: 2 },
+            { q: "في مرحلة تشغيل المشروع، قياس الانعكاسات الحقيقية على المستفيدين باستخدام معايير موضوعية يسمى:", options: ["أ) تسويق المشروع", "ب) قياس الأثر والاستدامة", "ج) أتمتة الكود", "د) التوثيق"], correct: 1 },
+            { q: "تصفية المشروع وتحويل موارده إلى مشاريع أخرى والاستفادة من الدروس الخاصة به، يندرج تحت مرحلة:", options: ["أ) تشغيل المشروع", "ب) تنفيذ المشروع", "ج) نهاية المشروع", "د) تحديد المشروع"], correct: 2 },
+            { q: "يمكننا استخدام برنامج Microsoft Project وغيرها من أدوات الجدولة لمتابعة وتحديد:", options: ["أ) شجرة المشاكل جذرياً", "ب) نشاطات المشروع، المدة الزمنية لكل نشاط، ومواعيد البداية والنهاية", "ج) قواعد البيانات الخاصة بالعملاء", "د) معالجة اللغة الطبيعية للذكاء الاصطناعي"], correct: 1 }
+        ];
 
-    <div class="scenario-card">
-        <h3>سيناريو 6: إطلاق خدمات بنكية جديدة</h3>
-        <p>ينوي بنك إطلاق خدمات مصرفية إلكترونية جديدة. لتجنب الفشل، أكد مدير الجودة على ضرورة تحديد الأشخاص والجهات ذات العلاقة. [cite: 559, 560]</p>
-        <p class="question-text">سؤال: من هم "أصحاب المصلحة" (Stakeholders) في هذا المشروع؟ اذكر 4 فئات على الأقل.</p>
-        <p><strong>الإجابة المقترحة:</strong> بناءً على تصنيف الجهات المعنية بالمشروع البنكي، يشمل أصحاب المصلحة: إدارة البنك، موظفي البنك، عملاء البنك، المساهمين، الجهات الحكومية، والمجتمع[cite: 567, 568, 569, 572, 573, 575].</p>
-    </div>
+        const mcqContainer = document.getElementById('mcq-container');
+        
+        mcqs.forEach((mcq, qIndex) => {
+            let optionsHtml = '';
+            mcq.options.forEach((opt, optIndex) => {
+                optionsHtml += `
+                    <div class="custom-radio">
+                        <input type="radio" id="q${qIndex}_opt${optIndex}" name="q${qIndex}" value="${optIndex}">
+                        <label for="q${qIndex}_opt${optIndex}">
+                            <span class="radio-circle"></span>
+                            <span class="text-gray-100">${opt}</span>
+                        </label>
+                    </div>
+                `;
+            });
 
-    <div class="scenario-card">
-        <h3>سيناريو 7: الازدحام وتقليص المعاملات</h3>
-        <p>مؤسسة قلصت خطوات إنجاز المعاملة من 33 يوماً إلى 5 أيام عن طريق إنشاء "نافذة خدمة واحدة" (One Stop Shopping) للمراجعين. [cite: 156, 160, 163]</p>
-        <p class="question-text">سؤال: بصفتك مدير عمليات، كيف تبرر نجاح هذا الإجراء من منظور "تحليل العمليات"؟</p>
-        <p><strong>الإجابة المقترحة:</strong> تم النجاح من خلال تحليل "الأنشطة والمهام" (أصغر وحدة عمل) [cite: 111, 120]، وتقليص خطوات السكرتاريا والخطوات الفنية ودمجها للوصول إلى مؤسسة رقمية تقدم الخدمة بواقع وقفة واحدة (Integrated E-Government Systems)[cite: 159, 160, 162, 164].</p>
-    </div>
+            const html = `
+                <div class="glass-card p-6 rounded-2xl" id="questionBox_${qIndex}">
+                    <p class="font-bold text-lg text-white mb-4"><span class="text-cyan-400 font-extrabold text-xl ml-1">${qIndex + 1}.</span> ${mcq.q}</p>
+                    <div class="space-y-3">
+                        ${optionsHtml}
+                    </div>
+                </div>
+            `;
+            mcqContainer.innerHTML += html;
+        });
 
-    <div class="scenario-card">
-        <h3>سيناريو 8: أبعاد التميز في تقديم الخدمة</h3>
-        <p>أطلقت دائرة حكومية نظاماً إلكترونياً متطوراً جداً، لكن الموظفين لم يتدربوا عليه وتم إطلاقه في وقت إجازات الأعياد مما أدى لتوقفه. [cite: 88, 93, 94]</p>
-        <p class="question-text">سؤال: أي من أركان "التميز" (Excellence) تم الإخلال بها في هذا المشروع؟</p>
-        <p><strong>الإجابة المقترحة:</strong> تم الإخلال بمبدأ "في الوقت الصحيح" (بسبب إطلاقه في الأعياد)، ومبدأ "مع الناس الأصحاح - كادر كفؤ ومحفز" (بسبب عدم تدريب الموظفين)[cite: 88, 94, 96].</p>
-    </div>
+        // --- Form Submission & Scoring ---
+        document.getElementById('quiz-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let score = 0;
+            
+            // Reset previous styles
+            document.querySelectorAll('.glass-card').forEach(el => {
+                el.classList.remove('border-red-500', 'border-green-500', 'shadow-red-500/50', 'shadow-green-500/50');
+            });
 
-    <div class="scenario-card">
-        <h3>سيناريو 9: تعثر بناء المصنع الذكي</h3>
-        <p>مشروع بناء مصنع واجه تأخيراً في التسليم وزيادة غير متوقعة في الميزانية بسبب إضافة المالك لمتطلبات تقنية جديدة أثناء التنفيذ. [cite: 468, 472, 476]</p>
-        <p class="question-text">سؤال: ما هي "المحددات الثلاثية" للمشروع التي تأثرت في هذه الحالة؟</p>
-        <p><strong>الإجابة المقترحة:</strong> تأثرت المحددات الثلاثية للمشروع وهي: "الوقت" (تأخر المشروع)، "التكاليف" (تجاوز التكلفة)، و"نطاق العمل" (بسبب تجاوز/نقص النطاق بإضافة متطلبات جديدة)[cite: 450, 452, 453, 454, 468, 472, 476].</p>
-    </div>
+            mcqs.forEach((mcq, qIndex) => {
+                const selected = document.querySelector(`input[name="q${qIndex}"]:checked`);
+                const qBox = document.getElementById(`questionBox_${qIndex}`);
+                
+                if (selected) {
+                    if (parseInt(selected.value) === mcq.correct) {
+                        score++;
+                        qBox.classList.add('border-green-500', 'shadow-green-500/20');
+                    } else {
+                        qBox.classList.add('border-red-500', 'shadow-red-500/20');
+                        // Highlight correct answer slightly
+                        const correctLabel = document.querySelector(`label[for="q${qIndex}_opt${mcq.correct}"]`);
+                        correctLabel.style.borderColor = '#10B981'; // Tailwind green-500
+                        correctLabel.style.color = '#10B981';
+                    }
+                } else {
+                    qBox.classList.add('border-red-500', 'shadow-red-500/20');
+                }
+            });
 
-    <div class="scenario-card">
-        <h3>سيناريو 10: دراسة السوق والبيئة الخارجية</h3>
-        <p>شركة تطوير برمجيات تريد الدخول في سوق دولة جديدة، وطلب منك تحليل العوامل الخارجية التي قد تؤثر على نجاح أنظمتهم هناك. [cite: 464, 467]</p>
-        <p class="question-text">سؤال: باستخدام أداة PESTLE، اذكر ثلاثة عوامل يجب التركيز عليها مع مثال لكل منها.</p>
-        <p><strong>الإجابة المقترحة:</strong> 1. العوامل القانونية (L): مثل القوانين الدولية والمحلية والجهات الرقابية[cite: 467]. 2. العوامل التقنية (T): التغيير والتطورات التكنولوجية[cite: 467]. 3. العوامل الاقتصادية (E): مثل النمو الاقتصادي والتطورات في الوزارات المماثلة[cite: 464].</p>
-    </div>
+            // Show Modal
+            document.getElementById('score-display').innerText = score;
+            const msgElement = document.getElementById('score-message');
+            if (score >= 35) {
+                msgElement.innerHTML = "أداء ممتاز! 🌟<br>أنت محلل نظم محترف.";
+            } else if (score >= 25) {
+                msgElement.innerHTML = "أداء جيد جداً! 👍<br>لديك معرفة صلبة.";
+            } else {
+                msgElement.innerHTML = "تحتاج إلى مراجعة المادة! 📚<br>راجع الأخطاء المظللة باللون الأحمر.";
+            }
+            
+            const modal = document.getElementById('result-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Animation scale up
+            setTimeout(() => {
+                modal.firstElementChild.classList.remove('scale-95');
+                modal.firstElementChild.classList.add('scale-100');
+            }, 10);
+        });
 
-
-    <h2>القسم الثاني: أسئلة الاختيار من متعدد (40 سؤال)</h2>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">1.</span> هي عملية منهجية تهدف إلى دراسة نظام قائم أو مقترح لفهم مشكلاته واحتياجاته، ثم وضع تصور تفصيلي لنظام جديد: <span class="citation">[cite: 45]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q1"> أ) تحليل النظم فقط</li>
-            <li><input type="radio" name="q1"> ب) تصميم النظم فقط</li>
-            <li><input type="radio" name="q1" checked> ج) تحليل وتصميم نظم المعلومات</li>
-            <li><input type="radio" name="q1"> د) دورة حياة تطوير النظم</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">2.</span> من المهام التي تندرج تحت مرحلة "تحليل نظم المعلومات" (Systems Analysis): <span class="citation">[cite: 47, 48, 49]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q2"> أ) تصميم واجهات المستخدم</li>
-            <li><input type="radio" name="q2"> ب) تصميم قاعدة البيانات</li>
-            <li><input type="radio" name="q2"> ج) إعداد المواصفات الفنية للتنفيذ</li>
-            <li><input type="radio" name="q2" checked> د) تقييم الجدوى التقنية والاقتصادية والتشغيلية</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">3.</span> تعتبر عملية تصميم الإجراءات والضوابط الأمنية جزءاً من مرحلة: <span class="citation">[cite: 51, 53]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q3" checked> أ) تصميم نظم المعلومات</li>
-            <li><input type="radio" name="q3"> ب) تقييم الجدوى الاقتصادية</li>
-            <li><input type="radio" name="q3"> ج) الصيانة الدورية</li>
-            <li><input type="radio" name="q3"> د) دراسة النظام الحالي</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">4.</span> من فوائد وأهمية تحليل وتصميم النظم: <span class="citation">[cite: 61, 62, 63, 64]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q4"> أ) زيادة عدد الموظفين في المؤسسة</li>
-            <li><input type="radio" name="q4" checked> ب) تقليل فشل المشاريع التقنية وتقليل التكاليف والأخطاء</li>
-            <li><input type="radio" name="q4"> ج) زيادة تعقيد العمليات الإدارية</li>
-            <li><input type="radio" name="q4"> د) جميع ما ذكر صحيح</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">5.</span> تتكون مكونات النظام الأساسية من: المدخلات، العمليات، المخرجات، بالإضافة إلى: <span class="citation">[cite: 65, 66, 67, 68, 70]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q5"> أ) التخزين السحابي</li>
-            <li><input type="radio" name="q5" checked> ب) التغذية الراجعة</li>
-            <li><input type="radio" name="q5"> ج) واجهة المستخدم</li>
-            <li><input type="radio" name="q5"> د) الموارد البشرية</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">6.</span> لكي يتحقق التميز (Excellence) بالنظام، يجب التركيز على ستة أمور "صحاح" منها: <span class="citation">[cite: 88, 92, 93]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q6"> أ) عمل الشيء الصحيح بطريقة عشوائية</li>
-            <li><input type="radio" name="q6" checked> ب) عمل الشيء الصحيح بطريقة صحيحة بالوقت الصحيح</li>
-            <li><input type="radio" name="q6"> ج) تحقيق الهدف بأي تكلفة ممكنة</li>
-            <li><input type="radio" name="q6"> د) العمل بدون كادر بشري</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">7.</span> تعرف بأنها "أصغر وحدة عمل" ومثال عليها ملء النماذج أو تحضير التقارير: <span class="citation">[cite: 120]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q7" checked> أ) المهمة (Task)</li>
-            <li><input type="radio" name="q7"> ب) العملية (Process)</li>
-            <li><input type="radio" name="q7"> ج) النظام (System)</li>
-            <li><input type="radio" name="q7"> د) التغذية الراجعة (Feedback)</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">8.</span> المخرجات الأساسية التي تصدر عن العملية خارج نطاق حدودها تُسمى: <span class="citation">[cite: 134, 135]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q8"> أ) المدخلات الخارجية</li>
-            <li><input type="radio" name="q8" checked> ب) المخرجات الخارجية</li>
-            <li><input type="radio" name="q8"> ج) العمليات الفرعية</li>
-            <li><input type="radio" name="q8"> د) التغذية الراجعة</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">9.</span> هي عملية إنشاء تمثيل مرئي أو مخطط يوضح أنظمة جمع المعلومات وأنظمة الإدارة في أي منظمة: <span class="citation">[cite: 189]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q9"> أ) أتمتة الأكواد</li>
-            <li><input type="radio" name="q9" checked> ب) نمذجة البيانات</li>
-            <li><input type="radio" name="q9"> ج) الجدوى الاقتصادية</li>
-            <li><input type="radio" name="q9"> د) اختبار النظام</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">10.</span> من مزايا نمذجة البيانات في المنظمات: <span class="citation">[cite: 192]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q10"> أ) تقليل سرعة النظام</li>
-            <li><input type="radio" name="q10"> ب) زيادة الأخطاء في تطوير قواعد البيانات</li>
-            <li><input type="radio" name="q10" checked> ج) تحقيق الاتساق في وثائق البيانات وتصميم الأنظمة</li>
-            <li><input type="radio" name="q10"> د) زيادة التكلفة التشغيلية</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">11.</span> الخطوة الأولى في خطوات نمذجة وعرض البيانات هي: <span class="citation">[cite: 195]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q11"> أ) اختيار الألوان المناسبة</li>
-            <li><input type="radio" name="q11" checked> ب) تحديد الهدف الرئيسي للتصميم وما الذي يريد المستخدم رؤيته</li>
-            <li><input type="radio" name="q11"> ج) إضافة لمسات شخصية</li>
-            <li><input type="radio" name="q11"> د) تحديد الخطوط المناسبة</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">12.</span> من برامج تحليل البيانات التي تساعد في النمذجة وعرض النتائج: <span class="citation">[cite: 204, 205]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q12"> أ) Photoshop</li>
-            <li><input type="radio" name="q12"> ب) AutoCAD</li>
-            <li><input type="radio" name="q12" checked> ج) SPSS و Power BI و Excel</li>
-            <li><input type="radio" name="q12"> د) WordPad</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">13.</span> الطريقة البيانية التي تعرض البيانات كأعمدة منفصلة لتمثيل فئات مختلفة (مثل مقارنة أنواع الجرائم المختلفة) تسمى: <span class="citation">[cite: 240, 241]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q13" checked> أ) طريقة الأعمدة البيانية البسيطة</li>
-            <li><input type="radio" name="q13"> ب) طريقة المنحنى البياني البسيط</li>
-            <li><input type="radio" name="q13"> ج) المضلع التكراري</li>
-            <li><input type="radio" name="q13"> د) المدرج التكراري</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">14.</span> في الرسوم البيانية، المضلع الذي نحصل عليه بتنصيف الأضلاع العلوية للمستطيلات ونصل بينها يسمى: <span class="citation">[cite: 290, 291, 292]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q14"> أ) المنحنى التكراري</li>
-            <li><input type="radio" name="q14" checked> ب) المضلع التكراري</li>
-            <li><input type="radio" name="q14"> ج) الأعمدة المجزأة</li>
-            <li><input type="radio" name="q14"> د) شجرة المشاكل</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">15.</span> يساعد الذكاء الاصطناعي في مرحلة "تحليل متطلبات النظام" من خلال: <span class="citation">[cite: 364]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q15"> أ) كتابة كود البرمجة بلغة C++</li>
-            <li><input type="radio" name="q15"> ب) تصميم واجهات المستخدم الجرافيكية</li>
-            <li><input type="radio" name="q15" checked> ج) تحليل كميات كبيرة من البيانات واستخراج المتطلبات تلقائياً باستخدام معالجة اللغة الطبيعية</li>
-            <li><input type="radio" name="q15"> د) تعيين الموظفين في المشروع</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">16.</span> إنشاء مخططات UML ومخططات تدفق البيانات تلقائياً، يعتبر دور الذكاء الاصطناعي في مرحلة: <span class="citation">[cite: 367]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q16"> أ) اختبار النظام</li>
-            <li><input type="radio" name="q16" checked> ب) نمذجة النظام (System Modeling)</li>
-            <li><input type="radio" name="q16"> ج) تحسين أداء النظام</li>
-            <li><input type="radio" name="q16"> د) إدارة قواعد البيانات العلاقية</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">17.</span> اكتشاف الأخطاء والثغرات الأمنية والتنبؤ بمناطق الفشل يتم باستخدام أدوات الذكاء الاصطناعي في خطوة: <span class="citation">[cite: 373, 374]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q17" checked> أ) اختبار النظام (System Testing)</li>
-            <li><input type="radio" name="q17"> ب) أتمتة كتابة الكود</li>
-            <li><input type="radio" name="q17"> ج) تحديد أصحاب المصلحة</li>
-            <li><input type="radio" name="q17"> د) بناء الميزانية</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">18.</span> من التحديات المتعلقة باستخدام الذكاء الاصطناعي في عملية التحليل والتصميم: <span class="citation">[cite: 381, 382]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q18"> أ) تقليل الوقت والتكلفة</li>
-            <li><input type="radio" name="q18"> ب) تحسين جودة النظام النهائي</li>
-            <li><input type="radio" name="q18" checked> ج) الحاجة إلى بيانات عالية الجودة ووجود خبرات تقنية متخصصة</li>
-            <li><input type="radio" name="q18"> د) دقة تحليل المتطلبات بنسبة 100% دائماً</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">19.</span> مجموعة من الأنشطة المترابطة غير الروتينية، لها بدايات ونهايات زمنية محددة يتم تنفيذها لتحقيق أهداف محددة، هو تعريف: <span class="citation">[cite: 418]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q19"> أ) العمليات الإدارية</li>
-            <li><input type="radio" name="q19" checked> ب) المشروع</li>
-            <li><input type="radio" name="q19"> ج) التغذية الراجعة</li>
-            <li><input type="radio" name="q19"> د) تحليل PESTLE</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">20.</span> من العناصر التي يجب توافرها في مفهوم المشروع: <span class="citation">[cite: 425, 426, 428]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q20"> أ) أنشطة روتينية يومية مستمرة بلا توقف</li>
-            <li><input type="radio" name="q20"> ب) عدم وجود موازنة مالية لتجنب القيود</li>
-            <li><input type="radio" name="q20" checked> ج) فترة زمنية محددة وموازنة تقديرية وهدف يجب تحقيقه</li>
-            <li><input type="radio" name="q20"> د) تجنب تحقيق معايير الجودة لتقليل التكلفة</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">21.</span> المحددات الثلاثية للمشروع التي تؤثر على نجاحه هي: <span class="citation">[cite: 450, 452, 453, 454]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q21" checked> أ) الوقت، التكاليف، نطاق العمل</li>
-            <li><input type="radio" name="q21"> ب) الجودة، المخاطر، الموارد</li>
-            <li><input type="radio" name="q21"> ج) المدخلات، العمليات، المخرجات</li>
-            <li><input type="radio" name="q21"> د) المبرمجين، المحللين، المدراء</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">22.</span> من أسباب فشل المشاريع المتعلقة بالمحددات الثلاثية: <span class="citation">[cite: 468, 472, 476]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q22"> أ) التسليم قبل الموعد</li>
-            <li><input type="radio" name="q22"> ب) تقليل التكاليف دون المساس بالجودة</li>
-            <li><input type="radio" name="q22" checked> ج) التأخر في المشروع وتجاوز التكلفة ونقص النطاق</li>
-            <li><input type="radio" name="q22"> د) إرضاء جميع أصحاب المصلحة</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">23.</span> في تحليل PESTLE، دراسة النمو الاقتصادي والتطورات في الوزارات والإدارات المماثلة يندرج تحت العوامل: <span class="citation">[cite: 464]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q23"> أ) السياسية (P)</li>
-            <li><input type="radio" name="q23" checked> ب) الاقتصادية (E)</li>
-            <li><input type="radio" name="q23"> ج) الاجتماعية (S)</li>
-            <li><input type="radio" name="q23"> د) التقنية (T)</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">24.</span> في تحليل PESTLE، دراسة القوانين الدولية والمحلية والجهات الرقابية يندرج تحت العوامل: <span class="citation">[cite: 467]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q24" checked> أ) القانونية (L)</li>
-            <li><input type="radio" name="q24"> ب) البيئية (E)</li>
-            <li><input type="radio" name="q24"> ج) التقنية (T)</li>
-            <li><input type="radio" name="q24"> د) السياسية (P)</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">25.</span> دورة حياة المشروع تبدأ بمرحلة: <span class="citation">[cite: 483]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q25"> أ) تنفيذ المشروع</li>
-            <li><input type="radio" name="q25" checked> ب) إدراك فكرة المشروع</li>
-            <li><input type="radio" name="q25"> ج) تشغيل المشروع</li>
-            <li><input type="radio" name="q25"> د) نهاية المشروع</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">26.</span> دراسة الحاجة إلى المشروع ودراسة الجدوى المبدئية (الفنية والمالية) تتم في مرحلة: <span class="citation">[cite: 491, 492]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q26" checked> أ) إدراك فكرة المشروع</li>
-            <li><input type="radio" name="q26"> ب) تنفيذ المشروع</li>
-            <li><input type="radio" name="q26"> ج) تقييم ونهاية المشروع</li>
-            <li><input type="radio" name="q26"> د) تسويق المشروع</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">27.</span> عند تحليل الحاجة أو المشكلة، يمكن البدء بالنظر إلى: <span class="citation">[cite: 496, 503, 504]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q27"> أ) الاحتياجات الخاصة بالمجتمع / المنظمة</li>
-            <li><input type="radio" name="q27"> ب) العوامل الاجتماعية المحيطة</li>
-            <li><input type="radio" name="q27"> ج) الموارد التي يمكن استغلالها</li>
-            <li><input type="radio" name="q27" checked> د) جميع ما ذكر صحيح</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">28.</span> في أسلوب تحليل المشاكل باستخدام "شجرة المشاكل"، يمثل الجذع: <span class="citation">[cite: 530, 531]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q28"> أ) الأسباب</li>
-            <li><input type="radio" name="q28" checked> ب) المشكلة الرئيسية</li>
-            <li><input type="radio" name="q28"> ج) الآثار</li>
-            <li><input type="radio" name="q28"> د) الحلول</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">29.</span> في أسلوب "شجرة المشاكل"، تمثل الجذور: <span class="citation">[cite: 532, 533]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q29" checked> أ) أسباب المشكلة</li>
-            <li><input type="radio" name="q29"> ب) نتائج المشكلة وآثارها</li>
-            <li><input type="radio" name="q29"> ج) المشكلة المركزية</li>
-            <li><input type="radio" name="q29"> د) الميزانية المقترحة لحل المشكلة</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">30.</span> في مثال شركة الحافلات، "فقدان الثقة بشركة الحافلات وإصابة المسافرين" يمثل في شجرة المشاكل: <span class="citation">[cite: 536, 538, 539]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q30"> أ) المشكلة الرئيسية</li>
-            <li><input type="radio" name="q30" checked> ب) الآثار (القمة)</li>
-            <li><input type="radio" name="q30"> ج) الأسباب (الجذور)</li>
-            <li><input type="radio" name="q30"> د) الحلول التقنية</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">31.</span> عند صياغة أهداف المشروع بعد استخدام شجرة المشاكل، نقوم بـ: <span class="citation">[cite: 554]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q31" checked> أ) إعادة صياغة كل الوضعيات السلبية بشكل إيجابي اعتماداً على ما هو منتظر</li>
-            <li><input type="radio" name="q31"> ب) حذف جميع المشاكل وتجاهلها</li>
-            <li><input type="radio" name="q31"> ج) تحويل الأهداف إلى أسباب</li>
-            <li><input type="radio" name="q31"> د) زيادة عدد المشاكل في الجذع</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">32.</span> الجهات التي لها تأثير مباشر وغير مباشر على المشروع والذين يتأثرون بنتائجه هم: <span class="citation">[cite: 559, 560]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q32"> أ) المبرمجون فقط</li>
-            <li><input type="radio" name="q32" checked> ب) أصحاب المصلحة أو الجهات المعنية (Stakeholders)</li>
-            <li><input type="radio" name="q32"> ج) المنافسون فقط</li>
-            <li><input type="radio" name="q32"> د) وزارة التخطيط حصراً</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">33.</span> من ضمن فئات أصحاب المصلحة في نظام القطاع البنكي: <span class="citation">[cite: 567, 568, 569, 572]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q33"> أ) المجتمع والبيئة والأجيال القادمة</li>
-            <li><input type="radio" name="q33"> ب) عملاء البنك والمساهمين</li>
-            <li><input type="radio" name="q33"> ج) إدارة البنك وموظفيه</li>
-            <li><input type="radio" name="q33" checked> د) جميع ما ذكر صحيح</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">34.</span> مرحلة "تحديد المشروع" تتضمن: <span class="citation">[cite: 595, 596]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q34"> أ) الرقابة على تنفيذ المشروع</li>
-            <li><input type="radio" name="q34"> ب) تصفية وإنهاء المشروع</li>
-            <li><input type="radio" name="q34" checked> ج) تحديد الموارد اللازمة ووضع الخطط التفصيلية والموازنات والجداول الزمنية</li>
-            <li><input type="radio" name="q34"> د) تقييم الأثر والاستدامة بعد إطلاق الخدمة</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">35.</span> في مرحلة تحديد المشروع، توفير وحصر وتصنيف جميع المعلومات ضمن نماذج خاصة مع تعريف العاملين بها يسمى: <span class="citation">[cite: 600]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q35"> أ) تصميم نظم المتابعة</li>
-            <li><input type="radio" name="q35" checked> ب) التوثيق</li>
-            <li><input type="radio" name="q35"> ج) الموارد البشرية</li>
-            <li><input type="radio" name="q35"> د) الموازنة</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">36.</span> الرقابة على التنفيذ ورفع التقارير (يومياً، أسبوعياً) ومقارنة ما تم تنفيذه مع ما تم التخطيط له، يندرج ضمن مرحلة: <span class="citation">[cite: 619, 620]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q36" checked> أ) مرحلة التنفيذ</li>
-            <li><input type="radio" name="q36"> ب) مرحلة إدراك الفكرة</li>
-            <li><input type="radio" name="q36"> ج) مرحلة التشغيل</li>
-            <li><input type="radio" name="q36"> د) مرحلة نهاية المشروع</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">37.</span> تقديم الخدمة والمنتج اللذين يهدف المشروع إلى تقديمهما، وتقييم مدى تحقيق المشروع للأهداف يتم في مرحلة: <span class="citation">[cite: 631, 632]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q37"> أ) التنفيذ</li>
-            <li><input type="radio" name="q37"> ب) التحديد</li>
-            <li><input type="radio" name="q37" checked> ج) تشغيل المشروع</li>
-            <li><input type="radio" name="q37"> د) نهاية المشروع</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">38.</span> في مرحلة تشغيل المشروع، قياس الانعكاسات الحقيقية على المستفيدين باستخدام معايير وأدوات قياس موضوعية يسمى: <span class="citation">[cite: 637]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q38"> أ) تسويق المشروع</li>
-            <li><input type="radio" name="q38" checked> ب) قياس الأثر والاستدامة</li>
-            <li><input type="radio" name="q38"> ج) أتمتة الكود</li>
-            <li><input type="radio" name="q38"> د) التوثيق</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">39.</span> تصفية المشروع وتحويل موارده إلى مشاريع أخرى والاستفادة من الدروس الخاصة به، يندرج تحت مرحلة: <span class="citation">[cite: 641, 642]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q39"> أ) تشغيل المشروع</li>
-            <li><input type="radio" name="q39"> ب) تنفيذ المشروع</li>
-            <li><input type="radio" name="q39" checked> ج) نهاية المشروع</li>
-            <li><input type="radio" name="q39"> د) تحديد المشروع</li>
-        </ul>
-    </div>
-
-    <div class="question-block">
-        <p class="question-text"><span class="q-number">40.</span> يمكننا استخدام برنامج Microsoft Project وغيرها من أدوات الجدولة لمتابعة وتحديد: <span class="citation">[cite: 645, 649]</span></p>
-        <ul class="options">
-            <li><input type="radio" name="q40"> أ) شجرة المشاكل جذرياً</li>
-            <li><input type="radio" name="q40" checked> ب) نشاطات المشروع، المدة الزمنية لكل نشاط، ومواعيد البداية والنهاية (Start/Finish)</li>
-            <li><input type="radio" name="q40"> ج) قواعد البيانات الخاصة بالعملاء</li>
-            <li><input type="radio" name="q40"> د) معالجة اللغة الطبيعية للذكاء الاصطناعي</li>
-        </ul>
-    </div>
-
-</div>
-
+        function closeModal() {
+            const modal = document.getElementById('result-modal');
+            modal.firstElementChild.classList.remove('scale-100');
+            modal.firstElementChild.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }, 300);
+        }
+    </script>
 </body>
 </html>
